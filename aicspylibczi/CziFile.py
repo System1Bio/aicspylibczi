@@ -278,7 +278,8 @@ class CziFile(object):
         root = etree.Element("Subblocks")
         for pair in subblock_meta:
             new_element = etree.Element("Subblock")
-            (new_element.set(dim, str(number)) for dim, number in pair[0].items())
+            for dim, number in pair[0].items():
+                new_element.set(dim, str(number))
             new_element.append(etree.XML(pair[1]))
             root.append(new_element)
         return root

@@ -205,7 +205,8 @@ def test_read_subblock_meta(data_dir, fname, expected):
 
 
 @pytest.mark.parametrize("fname, expected", [
-    ('s_1_t_1_c_1_z_1.czi', b'<Subblocks><Subblock><METADATA><Tags><AcquisitionTime>2019-06-27T18:33:41.1154211Z'
+    ('s_1_t_1_c_1_z_1.czi', b'<Subblocks><Subblock B="0" C="0"><METADATA><Tags><AcquisitionTime>'
+                            b'2019-06-27T18:33:41.1154211Z'
                             b'</AcquisitionTime><DetectorState><CameraState Id=""><CameraDisplayName>Camera 2 Left'
                             b'</CameraDisplayName><ApplyCameraProfile>false</ApplyCameraProfile><ApplyImageOrientation>'
                             b'true</ApplyImageOrientation><ExposureTime>10004210.526316</ExposureTime><Frame>'
