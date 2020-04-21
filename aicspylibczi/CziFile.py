@@ -233,6 +233,8 @@ class CziFile(object):
         if self.meta_root is None:
             meta_str = self.reader.read_meta()
             self.meta_root = etree.fromstring(meta_str)
+            subblock_meta = self.read_subblock_metadata(unified_xml=True)
+            self.meta_root.append(subblock_meta)
 
         if self.metafile_out:
             metastr = etree.tostring(self.meta_root, pretty_print=True).decode('utf-8')
