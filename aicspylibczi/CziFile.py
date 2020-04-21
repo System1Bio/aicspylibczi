@@ -282,6 +282,8 @@ class CziFile(object):
             new_element = etree.Element("Subblock")
             for dim, number in pair[0].items():
                 new_element.set(dim, str(number))
+            if 'S' not in pair[0]:
+                new_element.set('S', "0")
             new_element.append(etree.XML(pair[1]))
             root.append(new_element)
         return root
