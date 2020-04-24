@@ -266,8 +266,8 @@ class CziFile(object):
         -------
         [(dict, str)] if unified_xml is False
             an array of tuples containing a dimension dictionary and the corresponding subblock metadata
-        str if unified_xml is True
-            an lxml document containing the requested subblock metadata as a string.
+        lxml.etree.Element if unified_xml is True
+            an lxml document containing the requested subblock metadata.
         """
         plane_constraints = self.czilib.DimCoord()
         [plane_constraints.set_dim(k, v) for (k, v) in kwargs.items() if k in CziFile.ZISRAW_DIMS]
@@ -284,7 +284,7 @@ class CziFile(object):
                 new_element.set('S', "0")
             new_element.append(etree.XML(pair[1]))
             root.append(new_element)
-        return etree.tostring(root)
+        return root
 
     def read_image(self, **kwargs):
         """

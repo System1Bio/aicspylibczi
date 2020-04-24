@@ -1,4 +1,5 @@
 import io
+from lxml import etree
 import numpy as np
 import pytest
 
@@ -220,7 +221,7 @@ def test_read_unified_subblock_meta(data_dir, fname, expected):
     with open(data_dir / fname, 'rb') as fp:
         czi = CziFile(czi_filename=fp)
         data = czi.read_subblock_metadata(unified_xml=True)
-        assert expected in data
+        assert expected in etree.tostring(data)
 
 
 @pytest.mark.parametrize("fname, expects", [
