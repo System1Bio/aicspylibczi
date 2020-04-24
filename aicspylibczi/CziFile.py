@@ -226,8 +226,8 @@ class CziFile(object):
 
         Returns
         -------
-        lxml.etree
-            metadata as an xml etree
+        str
+            An lxml.etree of the metadata as a string
 
         """
         if self.meta_root is None:
