@@ -221,8 +221,7 @@ def test_read_unified_subblock_meta(data_dir, fname, expected):
     with open(data_dir / fname, 'rb') as fp:
         czi = CziFile(czi_filename=fp)
         data = czi.read_subblock_metadata(unified_xml=True)
-        xml_str = etree.tostring(data)
-        assert expected in xml_str
+        assert expected in data
 
 
 @pytest.mark.parametrize("fname, expects", [

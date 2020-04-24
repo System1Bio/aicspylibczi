@@ -222,7 +222,7 @@ class CziFile(object):
     @property
     def meta(self):
         """
-        Extract all metadata from czifile.
+        Extract the metadata block from the czi file.
 
         Returns
         -------
@@ -233,8 +233,6 @@ class CziFile(object):
         if self.meta_root is None:
             meta_str = self.reader.read_meta()
             self.meta_root = etree.fromstring(meta_str)
-            subblock_meta = self.read_subblock_metadata(unified_xml=True)
-            self.meta_root.append(subblock_meta)
 
         if self.metafile_out:
             metastr = etree.tostring(self.meta_root, pretty_print=True).decode('utf-8')
@@ -268,8 +266,8 @@ class CziFile(object):
         -------
         [(dict, str)] if unified_xml is False
             an array of tuples containing a dimension dictionary and the corresponding subblock metadata
-        lxml.etree.Element if unified_xml is True
-            an lxml document containing the requested metadata
+        str if unified_xml is True
+            an lxml document containing the requested subblock metadata as a string.
         """
         plane_constraints = self.czilib.DimCoord()
         [plane_constraints.set_dim(k, v) for (k, v) in kwargs.items() if k in CziFile.ZISRAW_DIMS]
@@ -286,7 +284,7 @@ class CziFile(object):
                 new_element.set('S', "0")
             new_element.append(etree.XML(pair[1]))
             root.append(new_element)
-        return root
+        return etree.tostring(root)
 
     def read_image(self, **kwargs):
         """
