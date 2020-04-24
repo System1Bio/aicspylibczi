@@ -1,7 +1,6 @@
 import io
 import numpy as np
 import pytest
-from lxml import etree
 
 from aicspylibczi import CziFile
 from _aicspylibczi import PylibCZI_CDimCoordinatesOverspecifiedException
