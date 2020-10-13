@@ -48,7 +48,6 @@ class CziFile(object):
                  verbose: bool = False):
         # Convert to BytesIO (bytestream)
         self._bytes = self.convert_to_buffer(czi_filename)
-        self.czi_filename = czi_filename
         self.metafile_out = metafile_out
         self.czifile_verbose = verbose
 
